@@ -15,7 +15,9 @@ Route::get('/', function () {
     return view('partials.landing');
 });
 
-Route::get('/events', 'EventController@underConstruction');
+Route::get('/events', 'EventController@index')->name("events");
+Route::get('/events/create', 'EventController@getAdd')->name('getAddEvents');
+Route::post('/events/create', 'EventController@add');
 
 Auth::routes();
 

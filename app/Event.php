@@ -17,14 +17,14 @@ use Illuminate\Database\Eloquent\Model;
 class Event extends Model
 {
     protected $table = "events";
+    protected $id;
     protected $name;
     protected $location;
     protected $description;
     protected $link;
     protected $date;
-    protected $author_id;
-    protected $approved;
-    protected $visible;
+    protected $authorId;
+    protected $valid;
 
     public function setName(string $name): void
     {
@@ -76,23 +76,23 @@ class Event extends Model
         return $this->date;
     }
 
-    public function setAuthorId(int $author_id): void
+    public function setAuthorId(int $authorId): void
     {
-        $this->author_id = $author_id;
+        $this->authorId = $authorId;
     }
 
     public function getAuthorId(): int
     {
-        return $this->author_id;
+        return $this->authorId;
     }
 
-    public function setVisible(bool $visible): void
+    public function setValid(bool $valid): void
     {
-        $this->visible = $visible;
+        $this->valid = $valid;
     }
 
     public function getVisible(): string
     {
-        return $this->visible;
+        return $this->valid;
     }
 }

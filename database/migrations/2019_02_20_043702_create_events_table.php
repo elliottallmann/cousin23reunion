@@ -19,10 +19,10 @@ class CreateEventsTable extends Migration
             $table->string("location");
             $table->string("description");
             $table->string("link");
-            $table->date("date");
-            $table->unsignedInteger("author_id");
-            $table->foreign("author_id")->references('id')->on("users");
-            $table->boolean("visible")->default(true);
+            $table->timestamp("date");
+            $table->unsignedInteger("authorId");
+            $table->foreign("authorId")->references('id')->on("users");
+            $table->boolean("valid")->default(true);
             $table->timestamps();
         });
     }

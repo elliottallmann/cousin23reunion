@@ -46,6 +46,8 @@
             @yield('content')
             @yield('underConstruction')
             @yield('landing')
+            @yield('events')
+            @yield("addEvent")
         </main>
     </div>
 </body>
