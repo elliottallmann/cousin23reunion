@@ -26,6 +26,20 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="partySize" class="col-md-4 col-form-label text-md-right">{{__('Party Size') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="partySize" type="number" class="form-control{{ $errors->has('partySize') ? 'is-invalid': ''  }}" name="partySize" required>
+
+                                @if ($errors->has('partySizee'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong> {{ $errors->first("partySize") }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">

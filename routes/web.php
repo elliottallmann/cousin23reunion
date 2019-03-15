@@ -18,7 +18,9 @@ Route::get('/', function () {
 Route::get('/events', 'EventController@index')->name("events");
 Route::get('/events/create', 'EventController@getAdd')->name('getAddEvents');
 Route::post('/events/create', 'EventController@add');
-
+Route::get('/events/create/{id}', 'EventController@getRSVP')->name('getRSVP');
+Route::post('/events/rsvp', 'EventController@rsvp');
+Route::get("/events/{id}", "EventController@detail")->name('detail');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

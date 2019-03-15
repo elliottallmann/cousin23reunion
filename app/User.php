@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'party_size'
     ];
 
     /**
@@ -31,5 +31,10 @@ class User extends Authenticatable
     public function isAdmin()
     {
         return Auth::user()->isAdmin ? true : false;
+    }
+
+    public function rsvps()
+    {
+        return $this->belongsToMany('App\RSVP', "userId");
     }
 }

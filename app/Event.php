@@ -95,4 +95,9 @@ class Event extends Model
     {
         return $this->valid;
     }
+
+    public function rsvps()
+    {
+        return $this->hasMany('App\RSVP', "eventId", "id");
+    }
 }

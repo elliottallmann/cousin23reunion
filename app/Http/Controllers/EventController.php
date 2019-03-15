@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 
 
 use App\Event;
+use App\RSVP;
+use App\User;
 use Illuminate\Support\Facades\Session;
 
 class EventController extends BaseController
@@ -32,7 +34,10 @@ class EventController extends BaseController
     public function index()
     {
         $events = Event::all()->where("valid", true);
-        return view("events.events", ["events" => $events]);
+        $rsvps = RSVP::all()->where("userId", "=", Auth::id());
+
+        return view("events.events", ["events" => $events,
+                                            "rsvps" => $rsvps]);
     }
 
     public function add(Request $request)
@@ -83,7 +88,7 @@ class EventController extends BaseController
     public function edit(Request $request)
     {
         $eventId = $request->input("id");
-        $event = Event::where("id", $eventId)->first();
+        $event = Event::all()::find("id", $eventId);
 
         if($event->authorId == Auth::id() || Auth::user()->isAdmin)
         {
@@ -91,11 +96,50 @@ class EventController extends BaseController
         }
         else
         {
-            $request->session()->flash("status", "Not Authorized");
-            return redirect()->back();
+            return redirect()->back()->with("error", "Not Authorized");
         }
     }
 
+    public function rsvp(Request $request)
+    {
+        $id = $request->input("eventId");
+        $partySize = $request->input("partySize");
+
+        $userId = Auth::id();
+
+        $previousRSVP = RSVP::where("userId", "=" ,$userId)->where("eventId", "=" , $id)->exists();
+        if($previousRSVP)
+        {
+            return back()->with("error", "You are already registered for this event");
+        }
+
+        $rsvp = new RSVP();
+        $rsvp->eventId = $id;
+        $rsvp->partySize = $partySize;
+        $rsvp->userId = $userId;
+        $saved = $rsvp->save();
+
+        if($saved)
+        {
+            return back()->with("success", "You have registered for this event!");
+        }
+        else
+        {
+            return back()->with("error", "Failed to register for the event. Please contact elliott.allmann@gmail.com");
+        }
+
+    }
+
+    public function detail($id)
+    {
+        $event = Event::with(['rsvps.user'])->find($id);
+        if($event === null)
+        {
+            return back()->with("error", "event with id $id does not exist");
+        }
+        return view('events.detail', ['event' => $event]);
+
+    }
 
 
 
