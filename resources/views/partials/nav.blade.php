@@ -6,6 +6,7 @@
         <div class="navbar-nav">
             <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
             <a class="nav-item nav-link" href="/events">Events</a>
+            <a class="nav-item nav-link" href="/calendar">Calendar</a>
             <a  class="nav-item nav-link" href="http://www.starwoodhotels.com/sheraton/property/overview/index.html?propertyID=127&language=en_US" target="_blank">Hotel</a>
         </div>
     </div>
@@ -26,11 +27,14 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{route("profileDetails")}}">Update profile </a>
+
                     <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}
                     </a>
+
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf

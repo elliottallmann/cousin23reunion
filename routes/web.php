@@ -21,6 +21,13 @@ Route::post('/events/create', 'EventController@add');
 Route::get('/events/create/{id}', 'EventController@getRSVP')->name('getRSVP');
 Route::post('/events/rsvp', 'EventController@rsvp');
 Route::get("/events/{id}", "EventController@detail")->name('detail');
+Route::get("/calendar", function() {
+    return view("calendar");
+})->name("calendar");
+
+Route::get("/profile", "UserController@index")->name("profileDetails");
+Route::post("/profile", "UserController@update")->name("updateProfile");
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

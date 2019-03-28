@@ -12,3 +12,39 @@
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
+/**/
+body {
+  padding-top: 10%;
+}
+/**/
+@media only screen {
+  @media (max-width: 600px) {
+    #map {
+      display: none;
+    }
+
+    #mapAlt {
+      display: block;
+    }
+
+    #calendar {
+      display: none;
+    }
+
+    #calendarAlt {
+      display: block;
+    }
+  }
+
+  @media (max-width: 800px) {
+    #homeImage {
+      display: none;
+    }
+  }
+}
+
+@media only screen and (min-width: 601px) {
+  #mapAlt {
+    display: none;
+  }
+}

@@ -28,7 +28,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+        <nav class="navbar fixed-top navbar-light bg-light">
             <div class="container">
                 <div class="container mx-auto ">
                     <div class="container-fluid">
@@ -43,9 +43,8 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4 container-fluid col-lg-8">
             @include('flash-message')
-
 
             @yield('content')
             @yield('underConstruction')
@@ -53,6 +52,8 @@
             @yield('events')
             @yield("addEvent")
             @yield('eventDetail')
+            @yield('calendar')
+            @yield('profileDetails')
         </main>
     </div>
 

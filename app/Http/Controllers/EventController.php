@@ -33,7 +33,7 @@ class EventController extends BaseController
 
     public function index()
     {
-        $events = Event::all()->where("valid", true);
+        $events = Event::orderBy("date", 'ASC')->where("valid", true)->get();
         $rsvps = RSVP::all()->where("userId", "=", Auth::id());
 
         return view("events.events", ["events" => $events,
