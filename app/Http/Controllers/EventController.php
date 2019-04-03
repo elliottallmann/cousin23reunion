@@ -112,6 +112,10 @@ class EventController extends BaseController
         {
             return back()->with("error", "You are already registered for this event");
         }
+        if($partySize === null)
+        {
+            $partySize = Auth::user()->party_size;
+        }
 
         $rsvp = new RSVP();
         $rsvp->eventId = $id;
@@ -139,6 +143,19 @@ class EventController extends BaseController
         }
         return view('events.detail', ['event' => $event]);
 
+    }
+
+    public function userEvents()
+    {
+        $events = Event::whereHas('rsvps', function ($query) {
+            $query->where("userId", '=', Auth::id());
+        })->get();
+        if(isset($events) && !empty($events))
+        {
+            return view("users.events", ["events" => $events]);
+
+        }
+        return back()->with("error", "You are not registered for any events");
     }
 
 

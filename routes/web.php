@@ -21,6 +21,9 @@ Route::post('/events/create', 'EventController@add');
 Route::get('/events/create/{id}', 'EventController@getRSVP')->name('getRSVP');
 Route::post('/events/rsvp', 'EventController@rsvp');
 Route::get("/events/{id}", "EventController@detail")->name('detail');
+
+Route::get("/myEvents", "EventController@userEvents")->name("userEvents");
+
 Route::get("/calendar", function() {
     return view("calendar");
 })->name("calendar");

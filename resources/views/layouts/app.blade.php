@@ -54,6 +54,7 @@
             @yield('eventDetail')
             @yield('calendar')
             @yield('profileDetails')
+            @yield('userEvents')
         </main>
     </div>
 

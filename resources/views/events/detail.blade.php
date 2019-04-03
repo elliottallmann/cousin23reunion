@@ -1,6 +1,6 @@
 @extends("layouts.app")
 @section("eventDetail")
-    <a class="btn btn-primary float-right" href="{{route("events")}}">Back</a>
+    <a class="btn btn-primary float-right" href="{{redirect()->back()->getTargetUrl()}}">Back</a>
     <h1>{{$event->name}}</h1>
     <p>{{$event->description}}</p>
     <p>{{date("l, F d, Y, h:i a", strtotime($event->date))}}</p>

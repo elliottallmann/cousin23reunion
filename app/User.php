@@ -35,6 +35,6 @@ class User extends Authenticatable
 
     public function rsvps()
     {
-        return $this->belongsToMany('App\RSVP', "userId");
+        return $this->belongsToMany('App\RSVP', "rsvps", "user_id", "id");
     }
 }
