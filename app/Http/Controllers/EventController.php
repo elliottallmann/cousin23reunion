@@ -33,11 +33,22 @@ class EventController extends BaseController
 
     public function index()
     {
-        $events = Event::orderBy("date", 'ASC')->where("valid", true)->get();
+        $events = Event::orderBy("date", 'ASC')->where("valid", true)
+            ->where("leisure", false)
+            ->get();
         $rsvps = RSVP::all()->where("userId", "=", Auth::id());
 
         return view("events.events", ["events" => $events,
                                             "rsvps" => $rsvps]);
+    }
+
+    public function leisure()
+    {
+        $events = Event::orderBy("date", 'ASC')->where("valid", true)
+            ->where("leisure", true)
+            ->get();
+
+        return view("leisure", ["events" => $events]);
     }
 
     public function add(Request $request)
@@ -48,6 +59,14 @@ class EventController extends BaseController
         $link = $request->input("link");
         $date = $request->input("date");
         $time = $request->input('time');
+        $price = $request->input("price");
+        $leisure = $request->input("leisure");
+
+        if($leisure === null) {
+            $leisure = false;
+        } else {
+            $leisure = true;
+        }
         $author_id = Auth::id();
 
       $timestr = $date . " " . $time;
@@ -59,6 +78,8 @@ class EventController extends BaseController
         $event->date = $timestr;
         $event->authorId = $author_id;
         $event->valid = true;
+        $event->leisure = $leisure;
+        $event->price = $price;
 
         $event->save();
         return redirect("events");

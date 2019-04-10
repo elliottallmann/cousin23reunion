@@ -5,9 +5,14 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
             <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="/events">Events</a>
-            <a class="nav-item nav-link" href="/calendar">Calendar</a>
+            <a class="nav-item nav-link" href="{{route("events")}}">Events</a>
+            <a class="nav-item nav-link" href="{{route("leisure")}}">At Your Leisure</a>
+            <a class="nav-item nav-link" href="{{route("transportation")}}">Transportation</a>
+            <a class="nav-item nav-link" href="{{route("calendar")}}">Calendar</a>
+            <a class="nav-item nav-link" href="{{route("hotel")}}">Hotel</a>
+<!--
             <a  class="nav-item nav-link" href="http://www.starwoodhotels.com/sheraton/property/overview/index.html?propertyID=127&language=en_US" target="_blank">Hotel</a>
+-->
         </div>
     </div>
     <!-- Right Side Of Navbar -->

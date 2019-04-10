@@ -16,6 +16,7 @@
                         </h3>
                         <p>{{$event->description}}</p>
                         <p>{{date("l, F d, Y, h:i a", strtotime($event->date))}}</p>
+                        <p>Approx Cost: {{number_format((float) $event->price, 2, '.', '')}}</p>
                         <a href="{{$event->link}}" target="_blank">{{$event->link}}</a>
                     </div>
                     <div class="ml-5 container">

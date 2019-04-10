@@ -17,6 +17,10 @@
             <input type="url" name="link">
             <label for="location">Location:</label>
             <input type="text" name="location">
+            <label for="price">Price:</label>
+            <input type="number" min="0" max="1000" step=".01" name="price">
+            <label for="leisure">Leisure:</label>
+            <input type="checkbox" name="leisure">
             <input type="submit" value="Submit!">
         </form>
     </div>

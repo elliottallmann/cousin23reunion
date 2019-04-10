@@ -19,7 +19,6 @@ class CreateEventsTable extends Migration
             $table->string("location");
             $table->string("description");
             $table->string("link")->nullable();
-            $table->timestamp("date");
             $table->unsignedInteger("authorId");
             $table->foreign("authorId")->references('id')->on("users");
             $table->boolean("valid")->default(true);

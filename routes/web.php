@@ -24,12 +24,24 @@ Route::get("/events/{id}", "EventController@detail")->name('detail');
 
 Route::get("/myEvents", "EventController@userEvents")->name("userEvents");
 
+Route::get("/profile", "UserController@index")->name("profileDetails");
+Route::post("/profile", "UserController@update")->name("updateProfile");
+
+
 Route::get("/calendar", function() {
     return view("calendar");
 })->name("calendar");
 
-Route::get("/profile", "UserController@index")->name("profileDetails");
-Route::post("/profile", "UserController@update")->name("updateProfile");
+Route::get("/hotel", function() {
+    return view ("hotel");
+})->name("hotel");
+
+Route::get("/leisure", "EventController@leisure")->name("leisure");
+
+Route::get("/transportation", function () {
+    return view("transportation");
+})->name("transportation");
+
 
 Auth::routes();
 
