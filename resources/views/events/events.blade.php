@@ -29,9 +29,12 @@
                                 @endif
                             @endforeach
                             @if($found)
-                                <button type="button" class="btn btn-success">Registered!</button>
+                                <a class="btn btn-success" href="{{route("editUserRegistration", ["id" => $event->id])}}">Edit Registration!</a>
                             @else
                                 <button type="button" class="btn btn-primary" data-id="{{$event->id}}" id="rsvpModalLaunch" data-toggle="modal" data-target="#rsvpModal">RSVP</button>
+                            @endif
+                            @if(Auth::user()->admin)
+                                <a href="{{route("editEvent", ["id" => $event->id])}}"> Edit Event</a>
                             @endif
                         </div>
                     </div>
@@ -58,9 +61,12 @@
                                 @endif
                             @endforeach
                             @if($found)
-                                <button type="button" class="btn btn-success">Registered!</button>
+                                    <a class="btn btn-success" href="{{route("editUserRegistration", ["id" => $event->id])}}">Edit Registration!</a>
                             @else
                                 <button type="button" class="btn btn-primary" data-id="{{$event->id}}" id="rsvpModalLaunch" data-toggle="modal" data-target="#rsvpModal">RSVP</button>
+                            @endif
+                            @if(Auth::user()->admin)
+                                <a href="{{route("editEvent", ["id" => $event->id])}}"> Edit Event</a>
                             @endif
                         </div>
                     </div>
@@ -87,10 +93,13 @@
                                 @endif
                             @endforeach
                             @if($found)
-                                <button type="button" class="btn btn-success">Registered!</button>
+                                    <a class="btn btn-success" href="{{route("editUserRegistration", ["id" => $event->id])}}">Edit Registration!</a>
                             @else
                                 <button type="button" class="btn btn-primary" data-id="{{$event->id}}" id="rsvpModalLaunch" data-toggle="modal" data-target="#rsvpModal">RSVP</button>
                             @endif
+                                @if(Auth::user()->admin)
+                                    <a href="{{route("editEvent", ["id" => $event->id])}}"> Edit Event</a>
+                                @endif
                         </div>
                     </div>
                 @endif
@@ -116,10 +125,13 @@
                                 @endif
                             @endforeach
                             @if($found)
-                                <button type="button" class="btn btn-success">Registered!</button>
+                                    <a class="btn btn-success" href="{{route("editUserRegistration", ["id" => $event->id])}}">Edit Registration!</a>
                             @else
                                 <button type="button" class="btn btn-primary" data-id="{{$event->id}}" id="rsvpModalLaunch" data-toggle="modal" data-target="#rsvpModal">RSVP</button>
                             @endif
+                                @if(Auth::user()->admin)
+                                    <a href="{{route("editEvent", ["id" => $event->id])}}"> Edit Event</a>
+                                @endif
                         </div>
                     </div>
             @endif

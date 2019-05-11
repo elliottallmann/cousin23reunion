@@ -59,6 +59,8 @@
             @yield('hotel')
             @yield('leisure')
             @yield('transportation')
+            @yield("editEvent")
+            @yield("editUserRegistration")
         </main>
     </div>
 

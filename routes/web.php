@@ -21,8 +21,15 @@ Route::post('/events/create', 'EventController@add');
 Route::get('/events/create/{id}', 'EventController@getRSVP')->name('getRSVP');
 Route::post('/events/rsvp', 'EventController@rsvp');
 Route::get("/events/{id}", "EventController@detail")->name('detail');
+Route::get("/events/edit/{id}", "EventController@edit")->name('editEvent');
+Route::post("/events/edit", "EventController@update")->name('updateEvent');
+
+
 
 Route::get("/myEvents", "EventController@userEvents")->name("userEvents");
+Route::get("/myEvents/edit/{id}", "EventController@getEditUserRegistration")->name("editUserRegistration");
+Route::post("myEvents/update", "EventController@updateUserRegistration")->name("updateUserRegistration");
+Route::get("/myEvents/cancel/{id}", "EventController@cancelUserRegistration")->name("cancelUserRegistration");
 
 Route::get("/profile", "UserController@index")->name("profileDetails");
 Route::post("/profile", "UserController@update")->name("updateProfile");

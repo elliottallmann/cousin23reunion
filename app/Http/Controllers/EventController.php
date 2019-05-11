@@ -106,18 +106,15 @@ class EventController extends BaseController
         }
     }
 
-    public function edit(Request $request)
+    public function edit($id)
     {
-        $eventId = $request->input("id");
-        $event = Event::all()::find("id", $eventId);
-
-        if($event->authorId == Auth::id() || Auth::user()->isAdmin)
+        if(Event::find($id))
         {
-            return view("events/edit", ["event" => $event]);
+            return view("events.editEvent", ["event" => Event::find($id)]);
         }
         else
         {
-            return redirect()->back()->with("error", "Not Authorized");
+            return back()->with("error", "An event with this id does not exist.");
         }
     }
 
@@ -179,6 +176,124 @@ class EventController extends BaseController
         return back()->with("error", "You are not registered for any events");
     }
 
+    public function update(Request $request)
+    {
+            $name = $request->input("name");
+            $location = $request->input("location");
+            $description = $request->input("description");
+            $link = $request->input("link");
+            $date = $request->input("date");
+            $time = $request->input('time');
+            $price = $request->input("price");
+            $leisure = $request->input("leisure");
+            $id = $request->input("eventID");
+
+            if($leisure === null) {
+                $leisure = false;
+            } else {
+                $leisure = true;
+            }
+            $event  = Event::find($id);
+
+            if(isset($date) && isset($time))
+            {
+                $timestr = $date . " " . $time;
+                $event->date = $timestr;
+            }
+
+
+            if(isset($name) && $name != $event->name)
+            {
+                $event->name = $name;
+            }
+            if(isset($location) && $location !== $event->location)
+            {
+                $event->location = $location;
+            }
+            if(isset($description) && $description !== $event->description)
+            {
+                $event->description = $description;
+            }
+            if(isset($link) && $link !== $event->link)
+            {
+                $event->link = $link;
+            }
+
+            $event->valid = true;
+            $event->leisure = $leisure;
+            if(isset($price)  && $price !== $event->price)
+            {
+                $event->price = $price;
+            }
+
+            $event->save();
+            return back()->with("success", "Event updated successfully");
+    }
+
+    public function getEditUserRegistration($id)
+    {
+        $event = Event::find($id);
+        if(isset($event) && $event !== null)
+        {
+            $rsvp = RSVP::all()->where("userId", Auth::id())->where("eventId", $event->id)->first();
+            if(isset($rsvp) && $rsvp !== null)
+            {
+                return view("events.editRegistration", ["registration" => $rsvp, "event" => $event]);
+            }
+            else
+            {
+                return back()->with("error", "You are not currently registered for that event.");
+            }
+        }
+        else
+        {
+            return back()->with("error", "Event does not exist");
+        }
+    }
+
+    public function updateUserRegistration(Request $request)
+    {
+        $registrationId = $request->input("registrationId");
+        $partySize = $request->input("numPeople");
+
+        if(isset($registrationId) && $registrationId !== null)
+        {
+            $rsvp = RSVP::find($registrationId);
+            if(isset($rsvp) && $rsvp !== null)
+            {
+                if($partySize === "0")
+                {
+                   return $this->cancelUserRegistration($rsvp->id);
+                }
+                else
+                {
+                    $rsvp->partySize = $partySize;
+                    $rsvp->save();
+                    return back()->with("success", "Registration updated successfully");
+                }
+            }
+            else
+            {
+                return back()->with("error", "You are not registered for this event.");
+            }
+        }
+        else
+        {
+            return back()->with("error", "Registration does not exist.");
+        }
+
+    }
+
+    public function cancelUserRegistration($id)
+    {
+        $rsvp = RSVP::find($id);
+        if(isset($rsvp) && $rsvp !== null)
+        {
+            $name = Event::find($rsvp->eventId)->name;
+            $rsvp->delete();
+            return redirect()->route("events")->with("success", "You have canceled your registration for $name");
+        }
+    }
 
 
 }
