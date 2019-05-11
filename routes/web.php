@@ -30,6 +30,7 @@ Route::get("/myEvents", "EventController@userEvents")->name("userEvents");
 Route::get("/myEvents/edit/{id}", "EventController@getEditUserRegistration")->name("editUserRegistration");
 Route::post("myEvents/update", "EventController@updateUserRegistration")->name("updateUserRegistration");
 Route::get("/myEvents/cancel/{id}", "EventController@cancelUserRegistration")->name("cancelUserRegistration");
+Route::get("/myEvents/edit/event/{eventId}", "EventController@editUserRegistration")->name("getUserEventRegistration");
 
 Route::get("/profile", "UserController@index")->name("profileDetails");
 Route::post("/profile", "UserController@update")->name("updateProfile");

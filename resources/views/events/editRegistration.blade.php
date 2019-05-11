@@ -1,10 +1,12 @@
 @extends("layouts.app")
 @section("editUserRegistration")
     <div class="container-fluid">
-        <h3> Edit Registration</h3>
         @if(isset($registration) && isset($event))
             <div class="container-fluid">
-                <h4>{{$event->name}}</h4>
+                <a class="btn btn-primary float-right" href="{{url()->previous()}}">Back</a>
+                <h3>
+                    {{$event->name}}
+                </h3>
                 <p>{{$event->description}}</p>
                 <p>{{date("l, F d, Y, h:i a", strtotime($event->date))}}</p>
                 <p>Approx Cost: {{number_format((float) $event->price, 2, '.', '')}}</p>

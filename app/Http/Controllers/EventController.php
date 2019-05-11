@@ -235,7 +235,7 @@ class EventController extends BaseController
         $event = Event::find($id);
         if(isset($event) && $event !== null)
         {
-            $rsvp = RSVP::all()->where("userId", Auth::id())->where("eventId", $event->id)->first();
+            $rsvp = RSVP::where("userId", Auth::id())->where("eventId", $event->id)->first();
             if(isset($rsvp) && $rsvp !== null)
             {
                 return view("events.editRegistration", ["registration" => $rsvp, "event" => $event]);
@@ -292,6 +292,19 @@ class EventController extends BaseController
             $name = Event::find($rsvp->eventId)->name;
             $rsvp->delete();
             return redirect()->route("events")->with("success", "You have canceled your registration for $name");
+        }
+    }
+
+    public function editUserRegistration($eventId)
+    {
+        $rsvp = RSVP::where("eventId", $eventId)->where("userId", Auth::id())->first();
+        if(isset($rsvp) && $rsvp !== null)
+        {
+            return $this->getEditUserRegistration($rsvp->id);
+        }
+        else
+        {
+            return back()->with("error", "Registration does not exist");
         }
     }
 

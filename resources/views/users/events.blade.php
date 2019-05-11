@@ -22,6 +22,7 @@
                             {{$event->rsvps()->first()->party_size}}
                         </div>
                     </div>
+                    <a class="btn btn-info" href="{{route("editUserRegistration", ["eventId" => $event->id])}}">View Registration Details</a>
                 @endforeach
             </ul>
         </div>
