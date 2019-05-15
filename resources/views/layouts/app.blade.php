@@ -44,7 +44,7 @@
             </div>
         </nav>
 
-        <main class="py-4 container-fluid col-lg-8">
+        <main class="p-4 container-fluid col-lg-8">
             @include('flash-message')
 
             @yield('content')
