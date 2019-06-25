@@ -15,7 +15,7 @@
                 </p>
                 <p>
                     Festivities will start Friday, July 26, and run through Sunday, July 28. We are looking at reserving a block of rooms in the
-                    <a href="http://www.starwoodhotels.com/sheraton/property/overview/index.html?propertyID=127&language=en_US" target="_blank">Sheraton Harbor Island</a>.
+                    <a href="https://book.passkey.com/gt/217319935?gtid=5f262c475fe5e541e4bcc6eb1051b186" target="_blank">Sheraton Harbor Island</a>.
                     There will also be an informal get-together the night before, Thursday, July 25.
                 </p>
 
